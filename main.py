@@ -53,12 +53,13 @@ m_right2.freq(PWM_FREQ)
 
 MOTOR_STATE = 'STOP'
 MOTOR_MAX = 65025
-MOTOR_SPEED = 0.4
+MOTOR_SPEED = 0.5
 REAL_SPEED = int(MOTOR_SPEED * MOTOR_MAX)
 
 BRAKE_TIME = 350
 BACK_TIME = 250
-TURN_ANGLE = 80
+TURN_ANGLE = 82
+
 
 # reset procedure for each TOF device
 device_0_xshut.value(0)
@@ -197,7 +198,7 @@ def m_stop():
 
 def m_brake():
     mpu.read()
-    m_drive(MOTOR_MAX, MOTOR_MAX, 1)
+    # m_drive(MOTOR_MAX, MOTOR_MAX, 1)
     startTime = ticks_ms()
     while ticks_diff(ticks_ms(), startTime) <= BRAKE_TIME:
         mpu.read()
@@ -244,7 +245,7 @@ while True:
     rightDist = tofl1.ping()
     leftDist = tofl2.ping()
 
-    print(leftDist, ' ', centerDist, ' ', rightDist )
+    # print(leftDist, ' ', centerDist, ' ', rightDist )
 
 
     if first == 'RIGHT':
@@ -252,10 +253,10 @@ while True:
         centerDist = 2000
         first = 0
 
-    if rightDist > 250:
+    if rightDist > 200:
         print('DREAPTA')
         # print(f'left{leftDist},right {rightDist},center{centerDist}')
-        m_brake()
+        # m_brake()
         m_turn(int(MOTOR_MAX * 1), 'RIGHT')
         m_boost()
 
@@ -266,7 +267,7 @@ while True:
         # m_turn(MOTOR_MAX, 'CENTER')
         m_drive(REAL_SPEED, REAL_SPEED, 1)
 
-    elif leftDist > 250:
+    elif leftDist > 200:
         print('DREAPTA')
         # print(f'left{leftDist},right {rightDist},center{centerDist}')
         m_brake()
