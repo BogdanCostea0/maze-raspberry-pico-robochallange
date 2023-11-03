@@ -245,12 +245,7 @@ while True:
     leftDist = tofl2.ping()
 
     print(leftDist, ' ', centerDist, ' ', rightDist )
-    
 
-    # while centerDist > 400 and rightDist > 400 and leftDist>400:
-    #     m_brake()
-    #     m_stop()
-    # else:
 
     if first == 'RIGHT':
         rightDist = 0
@@ -259,7 +254,7 @@ while True:
 
     if rightDist > 250:
         print('DREAPTA')
-        print(f'left{leftDist},right {rightDist},center{centerDist}')
+        # print(f'left{leftDist},right {rightDist},center{centerDist}')
         m_brake()
         m_turn(int(MOTOR_MAX * 1), 'RIGHT')
         m_boost()
@@ -267,13 +262,13 @@ while True:
     elif centerDist > 250:
         first = 0
         print('Center')
-        print(f'left{leftDist},right {rightDist},center{centerDist}')
+        # print(f'left{leftDist},right {rightDist},center{centerDist}')
         # m_turn(MOTOR_MAX, 'CENTER')
         m_drive(REAL_SPEED, REAL_SPEED, 1)
 
     elif leftDist > 250:
         print('DREAPTA')
-        print(f'left{leftDist},right {rightDist},center{centerDist}')
+        # print(f'left{leftDist},right {rightDist},center{centerDist}')
         m_brake()
         m_turn(int(MOTOR_MAX * 1), 'LEFT')
         m_boost()
