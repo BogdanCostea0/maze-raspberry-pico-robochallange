@@ -53,12 +53,12 @@ m_right2.freq(PWM_FREQ)
 
 MOTOR_STATE = 'STOP'
 MOTOR_MAX = 65025
-MOTOR_SPEED = 0.5
+MOTOR_SPEED = 0.50
 REAL_SPEED = int(MOTOR_SPEED * MOTOR_MAX)
 
 BRAKE_TIME = 350
 BACK_TIME = 250
-TURN_ANGLE = 82
+TURN_ANGLE = 77
 
 
 # reset procedure for each TOF device
@@ -253,25 +253,25 @@ while True:
         centerDist = 2000
         first = 0
 
-    if rightDist > 200:
+    if rightDist > 250:
         print('DREAPTA')
         # print(f'left{leftDist},right {rightDist},center{centerDist}')
         # m_brake()
-        m_turn(int(MOTOR_MAX * 1), 'RIGHT')
+        m_turn(int(MOTOR_MAX * 0.95), 'RIGHT')
         m_boost()
 
-    elif centerDist > 250:
+    elif centerDist > 350:
         first = 0
         print('Center')
         # print(f'left{leftDist},right {rightDist},center{centerDist}')
         # m_turn(MOTOR_MAX, 'CENTER')
         m_drive(REAL_SPEED, REAL_SPEED, 1)
 
-    elif leftDist > 200:
+    elif leftDist > 250:
         print('DREAPTA')
         # print(f'left{leftDist},right {rightDist},center{centerDist}')
         m_brake()
-        m_turn(int(MOTOR_MAX * 1), 'LEFT')
+        m_turn(int(MOTOR_MAX * 0.95), 'LEFT')
         m_boost()
 
 
