@@ -174,34 +174,11 @@ def m_turn(turnPower, direction):
     if direction == 'LEFT':
         while mpu._angZ < target:
             mpu.read()
-            # if tofl0.ping() < 30:
-            #     back_little()
-            #     glb.value(1)
-            #     vrd.value(0)
-            #     m_left1.init(freq=PWM_FREQ, duty_u16=left_1) # type: ignore
-            #     m_left1.duty_u16(left_1)
-            #     m_left2.init(freq=PWM_FREQ, duty_u16=left_2) # type: ignore
-            #     m_left2.duty_u16(left_2)
-            #     m_right1.init(freq=PWM_FREQ, duty_u16=right_1) # type: ignore
-            #     m_right1.duty_u16(right_1)
-            #     m_right2.init(freq=PWM_FREQ, duty_u16=right_2) # type: ignore
-            #     m_right2.duty_u16(right_2)
-
+            
     elif direction == 'RIGHT':
         while mpu._angZ > target:
             mpu.read()
-            # if tofl0.ping() < 30:
-            #     back_little()
-            #     glb.value(0)
-            #     vrd.value(1)
-            #     m_left1.init(freq=PWM_FREQ, duty_u16=left_1) # type: ignore
-            #     m_left1.duty_u16(left_1)
-            #     m_left2.init(freq=PWM_FREQ, duty_u16=left_2) # type: ignore
-            #     m_left2.duty_u16(left_2)
-            #     m_right1.init(freq=PWM_FREQ, duty_u16=right_1) # type: ignore
-            #     m_right1.duty_u16(right_1)
-            #     m_right2.init(freq=PWM_FREQ, duty_u16=right_2) # type: ignore
-            #     m_right2.duty_u16(right_2)
+        
     mpu._angZ = 0
     m_stop()
 
