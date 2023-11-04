@@ -53,12 +53,12 @@ m_right2.freq(PWM_FREQ)
 
 MOTOR_STATE = 'STOP'
 MOTOR_MAX = 65025
-MOTOR_SPEED = 0.50
+MOTOR_SPEED = 0.65
 REAL_SPEED = int(MOTOR_SPEED * MOTOR_MAX)
 
-BRAKE_TIME = 350
+BRAKE_TIME = 100
 BACK_TIME = 250
-TURN_ANGLE = 77
+TURN_ANGLE = 80
 
 
 # reset procedure for each TOF device
@@ -108,6 +108,7 @@ mpu.Initialize()
 print("calibrating")
 mpu.Calibrate()
 print('done calibrating')
+
 
 def m_drive(leftPower, rightPower, direction):
     glb.value(1)
@@ -198,7 +199,7 @@ def m_stop():
 
 def m_brake():
     mpu.read()
-    # m_drive(MOTOR_MAX, MOTOR_MAX, 1)
+    m_drive(MOTOR_MAX, MOTOR_MAX, 1)
     startTime = ticks_ms()
     while ticks_diff(ticks_ms(), startTime) <= BRAKE_TIME:
         mpu.read()
@@ -257,10 +258,10 @@ while True:
         print('DREAPTA')
         # print(f'left{leftDist},right {rightDist},center{centerDist}')
         # m_brake()
-        m_turn(int(MOTOR_MAX * 0.95), 'RIGHT')
-        m_boost()
+        m_turn(int(MOTOR_MAX * 1), 'RIGHT')
+        # m_boost()
 
-    elif centerDist > 350:
+    elif centerDist > 250:
         first = 0
         print('Center')
         # print(f'left{leftDist},right {rightDist},center{centerDist}')
@@ -270,9 +271,9 @@ while True:
     elif leftDist > 250:
         print('DREAPTA')
         # print(f'left{leftDist},right {rightDist},center{centerDist}')
-        m_brake()
-        m_turn(int(MOTOR_MAX * 0.95), 'LEFT')
-        m_boost()
+        # m_brake()
+        m_turn(int(MOTOR_MAX * 1), 'LEFT')
+        # m_boost()
 
 
     while (START.value() == 0):
